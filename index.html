@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SkillStreet | Learn Digital Skills & Build Real Projects</title>
+    <meta name="description" content="SkillStreet helps you learn digital skills, build real-world projects, and grow your career in design, editing, and tech.">
+    <meta name="keywords" content="SkillStreet, digital skills, learn editing, web design, portfolio, students India">
+    <meta name="author" content="SkillStreet">
+    <meta property="og:title" content="SkillStreet">
+    <meta property="og:description" content="Learn. Build. Launch.">
+    <meta property="og:type" content="website">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="home.css">
+</head>
+<body>
+    <nav class="fixed top-0 z-50 w-full px-6 py-4">
+        <div class="relative mx-auto flex max-w-7xl items-center justify-between rounded-full bg-blue-900 px-8 py-3 text-white">
+            <button type="button" class="flex items-center space-x-3 cursor-pointer" onclick="showPage('home')">
+                <span class="text-xl font-bold tracking-tight">SKILL STREET</span>
+            </button>
+
+            <button id="mobile-menu-button" type="button" class="text-white focus:outline-none md:hidden" aria-label="Open menu">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+
+            <div class="hidden space-x-8 text-sm font-medium md:flex" id="nav-links">
+                <button type="button" onclick="showPage('home', 'about')" class="nav-link">About</button>
+                <button type="button" onclick="showPage('home', 'founders-story')" class="nav-link">Founders Story</button>
+                <button type="button" onclick="showPage('home', 'why')" class="nav-link">Why Us</button>
+                <button type="button" onclick="showPage('home', 'founders')" class="nav-link">Founders</button>
+                
+                <a href="contact.html" class="nav-link">Contact us</a>
+                <a href="login.html" class="nav-link" id="login-link">Login/Register</a>
+                <div id="user-section" class="hidden items-center space-x-3">
+                    <span id="user-name" class="text-orange-300"></span>
+                    <button onclick="logoutUser()" class="nav-link text-red-400 hover:text-red-300">Logout</button>
+                </div>
+            </div>
+
+            <button
+                type="button"
+                onclick="window.open('https://forms.gle/5hLf8ok7E3WsU3m27', '_blank')"
+                class="btn-glass-primary apply-button rounded-full px-6 py-2 text-sm font-semibold text-orange-50"
+            >
+                Apply now
+            </button>
+        </div>
+
+        <div id="mobile-menu" class="absolute left-6 right-6 top-full z-40 hidden rounded-b-3xl bg-blue-900 px-6 py-4 text-white md:hidden">
+            <button type="button" onclick="showPage('home', 'about'); closeMobileMenu();" class="nav-link block py-2">About</button>
+            <button type="button" onclick="showPage('home', 'founders-story'); closeMobileMenu();" class="nav-link block py-2">Founders Story</button>
+            <button type="button" onclick="showPage('home', 'why'); closeMobileMenu();" class="nav-link block py-2">Why Us</button>
+            
+            <a href="login.html" class="nav-link block py-2" id="mobile-login-link">Login/Register</a>
+            <div id="mobile-user-section" class="hidden py-2">
+                <span id="mobile-user-name" class="text-orange-300 block py-2"></span>
+                <button onclick="logoutUser(); closeMobileMenu();" class="nav-link text-red-400 hover:text-red-300 block py-2">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <main id="home-page" class="page-content active">
+        <section class="relative flex min-h-[85vh] items-center bg-gradient-to-b from-blue-900 via-blue-950 to-black px-6 pb-20 pt-32">
+            <div class="hero-blob"></div>
+            <div class="relative z-10 mx-auto mt-10 max-w-7xl text-center">
+                <span class="inline-block rounded-full border border-orange-500/30 bg-orange-500/10 px-4 py-1 text-xs font-bold uppercase tracking-widest text-orange-300 mb-6">
+                    The Frontier of Learning
+                </span>
+                <h1 class="mb-8 text-5xl font-extrabold leading-tight md:text-7xl">
+                    The Street Where Skills<br>
+                    <span class="gradient-text hero-highlight">Meet Opportunity.</span>
+                </h1>
+                <p class="mx-auto mb-10 max-w-2xl text-lg leading-relaxed text-slate-300 md:text-xl">
+                    Build real skills, work on real projects, and unlock opportunities — before graduation
+                </p>
+
+                <div class="flex flex-col items-center justify-center space-y-4 md:flex-row md:space-x-4 md:space-y-0">
+                    <button
+                        type="button"
+                        onclick="window.open('https://www.linkedin.com/company/skill.street/', '_blank')"
+                        class="btn-glass-white flex w-full items-center justify-center rounded-xl px-8 py-4 font-bold md:w-auto"
+                    >
+                        Explore Skills <i class="fas fa-arrow-right ml-2 text-sm"></i>
+                    </button>
+                    <button
+                        type="button"
+                        onclick="showPage('home', 'about')"
+                        class="btn-glass w-full rounded-xl px-8 py-4 font-bold text-white md:w-auto"
+                    >
+                        Our Mission
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-24 px-6 bg-white">
+            <div class="max-w-7xl mx-auto">
+                <div class="flex flex-col md:flex-row items-center gap-16">
+                    <div class="flex-1">
+                        <h2 class="text-4xl font-bold mb-6"><span class="section-heading-dark">Redefining Your</span> <br><span class="accent-text">Learning Path</span></h2>
+                        <p class="mb-8 text-lg font-semibold text-slate-800">Skill Street isn't just an education platform; it's an immersive career ecosystem designed to inspire, inform, and innovate.</p>
+                        
+                        <ul class="space-y-6">
+                            <li class="flex items-start space-x-4">
+                                <div class="mt-1 rounded-xl bg-blue-950 p-2"><i class="fas fa-infinity text-sm accent-icon"></i></div>
+                                <div>
+                                    <span class="block text-lg font-bold text-blue-950">Lifetime Access</span>
+                                    <span class="text-sm font-semibold text-slate-600">Gain permanent access to our exclusive vault of community resources, toolkits, and industry templates once you join.</span>
+                                </div>
+                            </li>
+                            <li class="flex items-start space-x-4">
+                                <div class="mt-1 rounded-xl bg-blue-950 p-2"><i class="fas fa-vr-cardboard text-sm accent-icon"></i></div>
+                                <div>
+                                    <span class="block text-lg font-bold text-blue-950">Skill-First Learning</span>
+                                    <span class="text-sm font-semibold text-slate-600">Move beyond academic definitions. Our curriculum focuses on "how to perform" in real-world scenarios.</span>
+                                </div>
+                            </li>
+                            <li class="flex items-start space-x-4">
+                                <div class="mt-1 rounded-xl bg-blue-950 p-2"><i class="fas fa-users text-sm accent-icon"></i></div>
+                                <div>
+                                    <span class="block text-lg font-bold text-blue-950">Learn From Real Founders</span>
+                                    <span class="text-sm font-semibold text-slate-600">Connect with a network of edutainers and leaders who facilitate collaborative learning and direct mentorship.</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="flex-1 relative">
+                        <div class="w-full aspect-square glass rounded-3xl overflow-hidden animate-float">
+                            <div class="absolute inset-0 bg-gradient-to-br from-indigo-500/20 to-purple-500/20"></div>
+                            <img src="about sec .jpeg" alt="Learning" class="w-full h-full object-cover mix-blend-overlay">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Founders Story Section -->
+        <section id="founders-story" class="py-24 px-6 bg-blue-950 text-white">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-16">
+                    <span class="inline-block py-1 px-4 rounded-full border border-orange-500/30 bg-orange-500/10 text-orange-300 text-xs font-bold uppercase tracking-widest mb-6">
+                        Founders Story
+                    </span>
+                    <h2 class="text-4xl md:text-5xl font-bold mb-6">Built From a Shared Belief That Learning Should Lead Somewhere Real</h2>
+                    <p class="text-slate-300 text-lg leading-relaxed w-full">
+                        SkillStreet started with a simple frustration.
+                        Students were learning, completing courses, and collecting certificates 
+                        but when it came to real opportunities, most were still stuck.
+
+                        Coming from a non-traditional path myself, I saw talented students being overlooked 
+                        not because they lacked ability,
+                        but because they lacked access.
+
+                        So we decided to change that.
+                        Not with another course.
+                        Not with another promise.
+                        With real opportunities.
+
+                        That decision became SkillStreet.
+                    </p>
+                </div>
+
+                <div class="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
+                    <div class="space-y-6">
+                        <div class="p-8 rounded-[2rem] bg-white/5 border border-white/10 backdrop-blur-sm">
+                            <h3 class="text-2xl font-bold mb-4 text-orange-400">How It Started</h3>
+                            <p class="text-slate-300 leading-relaxed mb-4">
+                                What began as small experiments connecting a few students with startups quickly turned into a mission.
+                            </p>
+                            <p class="text-slate-300 leading-relaxed">
+                                We saw confidence grow the moment students worked on real problems. That's when we realized the gap wasn't in talent. The gap was in opportunity.
+                            </p>
+                        </div>
+
+                        <div class="p-8 rounded-[2rem] bg-orange-500/10 border border-orange-400/20">
+                            <h3 class="text-2xl font-bold mb-4 text-white">What We Wanted To Change</h3>
+                            <p class="text-slate-200 leading-relaxed">
+                                We wanted to fix one broken experience: internships. Too many students faced unclear roles, unpaid work, and broken promises. SkillStreet was built to bring clarity, accountability, and real-world execution into internships.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-1">
+                        <div class="p-6 rounded-3xl bg-blue-900/60 border border-blue-800/60">
+                            <h4 class="text-xl font-bold mb-3 text-white">Vision</h4>
+                            <p class="text-slate-300 text-sm leading-relaxed">Make real opportunities accessible to every student regardless of background.</p>
+                        </div>
+                        <div class="p-6 rounded-3xl bg-blue-900/60 border border-blue-800/60">
+                            <h4 class="text-xl font-bold mb-3 text-white">Struggle</h4>
+                            <p class="text-slate-300 text-sm leading-relaxed">No funding. No shortcuts. Just belief and relentless execution.</p>
+                        </div>
+                        <div class="p-6 rounded-3xl bg-blue-900/60 border border-blue-800/60 sm:col-span-2 lg:col-span-1">
+                            <h4 class="text-xl font-bold mb-3 text-white">Outcome</h4>
+                            <p class="text-slate-300 text-sm leading-relaxed">Today, SkillStreet is building a system where learning leads to action, and action leads to careers. And this is only the beginning.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why SkillStreet Section -->
+        <section id="why" class="py-24 text-center bg-white border-y border-zinc-900 px-6">
+            <h2 class="mb-16 text-4xl font-bold text-blue-950">Why <span class="accent-text">SkillStreet?</span></h2>
+            <div class="grid md:grid-cols-3 gap-12 max-w-5xl mx-auto">
+                <div class="p-8 rounded-2xl border border-white/5 hover:border-indigo-500/30 transition-all bg-blue-900">
+                    <div class="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center mx-auto mb-6 text-xl">
+                        <i class="fas fa-bolt accent-icon"></i>
+                    </div>
+                    <h3 class="text-white text-xl font-bold mb-3">Real Skills</h3>
+                    <p class="text-white text-sm leading-relaxed">No theory. Only practical execution. We focus on results that matter in the real world.</p>
+                </div>
+                <div class="p-8 rounded-2xl border border-white/5 hover:border-purple-500/30 transition-all bg-blue-900">
+                    <div class="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center mx-auto mb-6 text-xl">
+                        <i class="fas fa-graduation-cap accent-icon"></i>
+                    </div>
+                    <h3 class="text-white text-xl font-bold mb-3">Student Friendly</h3>
+                    <p class="text-white text-sm leading-relaxed">Built for learners, not just professionals. Simple, accessible, and high impact.</p>
+                </div>
+                <div class="p-8 rounded-2xl border border-white/5 hover:border-cyan-500/30 transition-all bg-blue-900">
+                    <div class="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center mx-auto mb-6 text-xl">
+                        <i class="fas fa-rocket accent-icon"></i>
+                    </div>
+                    <h3 class="text-white text-xl font-bold mb-3">Future Ready</h3>
+                    <p class="text-white text-sm leading-relaxed">Skills that actually matter in 2026. Stay ahead of the curve with emerging tech mastery.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Founders Section -->
+        <section id="founders" class="py-24 px-6 bg-white">
+            <div class="max-w-7xl mx-auto text-center">
+                <h2 class="mb-4 text-4xl font-bold text-blue-900">The Minds Behind <span class="accent-text">Skill Street</span></h2>
+                <p class="max-w-xl mx-auto mb-16 text-slate-600">Visionaries dedicated to bridging the global skills gap.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
+                    <div class="p-8 rounded-[2rem] text-center transition-all duration-300 hover:bg-blue-800 hover:border-orange-400/40 border border-blue-900/30 bg-blue-900">
+                        <div class="w-24 h-24 mx-auto mb-6 rounded-full overflow-hidden border-2 border-indigo-500/30">
+                            <img src="https://ui-avatars.com/api/?name=Hanu+Pandey&background=3b82f6&color=fff&size=128" alt="Hanu Pandey" class="w-full h-full object-cover">
+                        </div>
+                        <h3 class="text-xl font-semibold mb-1">Hanu Pandey</h3>
+                        <p class="text-orange-300 text-xs font-medium mb-4 uppercase tracking-wider">Founder</p>
+                        <a href="https://www.linkedin.com/in/hanu-pandey-827b05312" target="_blank" class="inline-flex items-center justify-center px-6 py-2 bg-orange-600 hover:bg-orange-700 text-white rounded-full text-sm font-bold transition-all">
+                            LinkedIn <i class="fab fa-linkedin ml-2"></i>
+                        </a>
+                    </div>
+
+                    <div class="p-8 rounded-[2rem] text-center transition-all duration-300 hover:bg-blue-800 hover:border-orange-400/40 border border-blue-900/30 bg-blue-900">
+                        <div class="w-24 h-24 mx-auto mb-6 rounded-full overflow-hidden border-2 border-purple-500/30">
+                            <img src="https://ui-avatars.com/api/?name=Ganesh+Mishra&background=a855f7&color=fff&size=128" alt="Ganesh Mishra" class="w-full h-full object-cover">
+                        </div>
+                        <h3 class="text-xl font-semibold mb-1">Ganesh Mishra</h3>
+                        <p class="text-orange-300 text-xs font-weight-600 mb-4 uppercase tracking-wider">Co-Founder</p>
+                        <a href="https://www.linkedin.com/in/ganesh-mishra-287546246" target="_blank" class="inline-flex items-center justify-center px-6 py-2 bg-orange-600 hover:bg-orange-700 text-white rounded-full text-sm font-bold transition-all">
+                            LinkedIn <i class="fab fa-linkedin ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dynamic Quote Section -->
+        <section class="quote-section">
+            <div id="quote-box">
+                <p id="quote-text"></p>
+                <span id="quote-author"></span>
+            </div>
+        </section>
+    </main>
+
+    <!-- Legal Pages -->
+    <div id="disclaimer-page" class="page-content">
+        <section class="bg-black text-zinc-300 px-6 py-32 min-h-screen">
+            <div class="max-w-4xl mx-auto">
+                <h1 class="text-3xl md:text-5xl text-white font-light mb-8">Disclaimer</h1>
+                <p class="mb-6 text-sm text-slate-400">Last Updated: March 2026</p>
+                <p class="mb-8 leading-relaxed text-lg">
+                    The information provided by SkillStreet is for general educational and informational purposes only. All content is published in good faith, however we make no guarantees regarding completeness, reliability, or accuracy.
+                </p>
+
+                <h2 class="text-xl text-white mt-10 mb-4 font-bold">1. No Professional Advice</h2>
+                <p class="leading-relaxed mb-6">
+                    SkillStreet does not provide legal, financial, or professional advice. Any action you take based on the information on this platform is strictly at your own risk.
+                </p>
+
+                <h2 class="text-xl text-white mt-10 mb-4 font-bold">2. Results Disclaimer</h2>
+                <p class="leading-relaxed mb-6">
+                    We do not guarantee specific results from using our platform. Success depends on individual effort, skill level, and external factors.
+                </p>
+
+                <h2 class="text-xl text-white mt-10 mb-4 font-bold">3. External Links Disclaimer</h2>
+                <p class="leading-relaxed mb-6">
+                    Our website may contain links to external platforms. We are not responsible for the content, accuracy, or practices of third-party sites.
+                </p>
+
+                <h2 class="text-xl text-white mt-10 mb-4 font-bold">4. Limitation of Liability</h2>
+                <p class="leading-relaxed mb-6">
+                    Under no circumstances shall SkillStreet be liable for any loss or damage resulting from the use of the platform.
+                </p>
+
+                <h2 class="text-xl text-white mt-10 mb-4 font-bold">5. Consent</h2>
+                <p class="leading-relaxed mb-6">
+                    By using SkillStreet, you hereby consent to this disclaimer and agree to its terms.
+                </p>
+
+                <h2 class="text-xl text-white mt-10 mb-4 font-bold">6. Contact</h2>
+                <div class="mt-4 space-y-4">
+                    <a href="https://skillstreet.carrd.co/" target="_blank" class="block text-orange-300 hover:text-white transition-colors underline">
+                        Website: skillstreet.carrd.co
+                    </a>
+                    <a href="https://www.linkedin.com/company/skill.street/" target="_blank" class="block text-orange-300 hover:text-white transition-colors underline">
+                        LinkedIn: SkillStreet
+                    </a>
+                </div>
+                <div class="mt-12">
+                    <button onclick="showPage('home')" class="btn-glass px-8 py-3 rounded-xl text-white">Back to Home</button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div id="privacy-page" class="page-content">
+        <section class="bg-black text-zinc-300 px-6 py-32 min-h-screen">
+            <div class="max-w-4xl mx-auto">
+                <h1 class="text-3xl md:text-5xl text-white font-light mb-8">Privacy Policy</h1>
+                <p class="mb-6 text-sm text-slate-400">Last Updated: March 2026</p>
+                <p class="mb-8 leading-relaxed text-lg">
+                    At SkillStreet, your privacy is important to us. This Privacy Policy explains how we collect, use, and protect your information when you use our platform.
+                </p>
+
+                <h2 class="text-xl text-white mt-10 mb-4 font-bold">1. Information We Collect</h2>
+                <ul class="list-disc pl-6 space-y-3 mb-6">
+                    <li>Basic details such as name and email (if provided)</li>
+                    <li>Usage data (pages visited, time spent, interactions)</li>
+                    <li>Device and browser information</li>
+                </ul>
+
+                <h2 class="text-xl text-white mt-10 mb-4 font-bold">2. How We Use Your Information</h2>
+                <p class="leading-relaxed mb-6">
+                    We use your data to improve user experience, enhance platform performance, and provide relevant content. We do not sell your personal data.
+                </p>
+
+                <h2 class="text-xl text-white mt-10 mb-4 font-bold">3. Cookies</h2>
+                <p class="leading-relaxed mb-6">
+                    SkillStreet may use cookies to improve functionality and understand user behavior. You can disable cookies in your browser settings.
+                </p>
+
+                <h2 class="text-xl text-white mt-10 mb-4 font-bold">4. Third-Party Services</h2>
+                <p class="leading-relaxed mb-6">
+                    We may use trusted third-party tools (such as analytics or social media platforms). These services have their own privacy policies.
+                </p>
+
+                <h2 class="text-xl text-white mt-10 mb-4 font-bold">5. Data Security</h2>
+                <p class="leading-relaxed mb-6">
+                    We take reasonable measures to protect your data, but no system is 100% secure. Use the platform responsibly.
+                </p>
+
+                <h2 class="text-xl text-white mt-10 mb-4 font-bold">6. Your Rights</h2>
+                <p class="leading-relaxed mb-6">
+                    You have the right to access, update, or request deletion of your personal data where applicable.
+                </p>
+
+                <h2 class="text-xl text-white mt-10 mb-4 font-bold">9. Contact</h2>
+                <div class="mt-4 space-y-4 mb-10">
+                    <a href="https://skillstreet.carrd.co/" target="_blank" class="block text-orange-300 hover:text-white transition-colors underline">
+                        Website: skillstreet.carrd.co
+                    </a>
+                    <a href="https://www.linkedin.com/company/skill.street/" target="_blank" class="block text-orange-300 hover:text-white transition-colors underline">
+                        LinkedIn: SkillStreet
+                    </a>
+                </div>
+
+                <p class="text-xs text-slate-500 mb-8">
+                    By using SkillStreet, you agree to the terms outlined in this Privacy Policy.
+                </p>
+
+                <button onclick="showPage('home')" class="btn-glass px-8 py-3 rounded-xl text-white">Back to Home</button>
+            </div>
+        </section>
+    </div>
+
+    <div id="login-page" class="page-content">
+        <section class="bg-black text-zinc-300 px-6 py-32 min-h-screen">
+            <div class="max-w-md mx-auto">
+                <h1 class="text-3xl md:text-5xl text-white font-light mb-8">Login</h1>
+                <form>
+                    <div class="mb-4">
+                        <label class="block text-sm font-bold mb-2" for="email">Email</label>
+                        <input class="w-full px-3 py-2 border rounded" type="email" id="email" name="email" required>
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-sm font-bold mb-2" for="password">Password</label>
+                        <input class="w-full px-3 py-2 border rounded" type="password" id="password" name="password" required>
+                    </div>
+                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit">Login</button>
+                </form>
+                <div class="mt-12">
+                    <button onclick="showPage('home')" class="btn-glass px-8 py-3 rounded-xl text-white">Back to Home</button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div id="register-page" class="page-content">
+        <section class="bg-black text-zinc-300 px-6 py-32 min-h-screen">
+            <div class="max-w-md mx-auto">
+                <h1 class="text-3xl md:text-5xl text-white font-light mb-8">Register</h1>
+                <form>
+                    <div class="mb-4">
+                        <label class="block text-sm font-bold mb-2" for="name">Name</label>
+                        <input class="w-full px-3 py-2 border rounded" type="text" id="name" name="name" required>
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-sm font-bold mb-2" for="reg-email">Email</label>
+                        <input class="w-full px-3 py-2 border rounded" type="email" id="reg-email" name="email" required>
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-sm font-bold mb-2" for="reg-password">Password</label>
+                        <input class="w-full px-3 py-2 border rounded" type="password" id="reg-password" name="password" required>
+                    </div>
+                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit">Register</button>
+                </form>
+                <div class="mt-12">
+                    <button onclick="showPage('home')" class="btn-glass px-8 py-3 rounded-xl text-white">Back to Home</button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="py-16 px-6 border-t border-white/5 text-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+                <div class="col-span-1 md:col-span-2">
+                    <div class="flex items-center space-x-3 mb-6">
+                        
+                        <span class="text-xl font-bold">SKILL STREET</span>
+                    </div>
+                    <p class="max-w-sm text-slate-400">Inspiring, informing, and innovating the way the world develops talent.</p>
+                    <div class="flex space-x-4 mt-6">
+                        <a href="https://www.linkedin.com/company/skill.street/" target="_blank" class="text-slate-400 hover:text-white transition-colors">
+                            <i class="fab fa-linkedin text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-6">Experience</h4>
+                    <ul class="space-y-4 text-sm text-slate-400">
+                        <li><a onclick="showPage('home', 'about')" class="cursor-pointer hover:text-white">Our Mission</a></li>
+                        <li><a onclick="showPage('home', 'why')" class="cursor-pointer hover:text-white">Why Us?</a></li>
+                        <li><a onclick="showPage('home', 'founders')" class="cursor-pointer hover:text-white">Leadership</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-6">Governance</h4>
+                    <ul class="space-y-4 text-sm text-slate-400">
+                        <li><a onclick="showPage('disclaimer')" class="cursor-pointer hover:text-white">Disclaimer</a></li>
+                        <li><a href="Privacy Policy & TC skillstreet.pdf" class="cursor-pointer hover:text-white">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-16 pt-8 border-t border-white/5 text-center text-xs text-slate-500">
+                &copy; 2026 SkillStreet. Empowering the next generation of industry leaders.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom Logout Popup Modal -->
+    <div id="logoutModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-icon">
+                <i class="fas fa-sign-out-alt"></i>
+            </div>
+            <h3 class="modal-title">Logout Confirmation</h3>
+            <p class="modal-message">Are you sure you want to logout?</p>
+            <div class="modal-buttons">
+                <button class="modal-btn modal-btn-cancel" onclick="closeLogoutModal()">Cancel</button>
+                <button class="modal-btn modal-btn-confirm" onclick="confirmLogout()">Yes, Logout</button>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        /* Modal Overlay */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .modal-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        /* Modal Content */
+        .modal-content {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            transform: scale(0.7) translateY(50px);
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+        
+        .modal-overlay.show .modal-content {
+            transform: scale(1) translateY(0);
+            opacity: 1;
+        }
+        
+        /* Modal Icon */
+        .modal-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #f97316, #ea580c);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            animation: iconPulse 2s infinite;
+        }
+        
+        .modal-icon i {
+            font-size: 28px;
+            color: white;
+        }
+        
+        @keyframes iconPulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.4); }
+            50% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(249, 115, 22, 0); }
+        }
+        
+        /* Modal Title & Message */
+        .modal-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 10px;
+        }
+        
+        .modal-message {
+            color: #64748b;
+            font-size: 16px;
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+        
+        /* Modal Buttons */
+        .modal-buttons {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+        }
+        
+        .modal-btn {
+            padding: 12px 24px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+        }
+        
+        .modal-btn-cancel {
+            background: #f1f5f9;
+            color: #64748b;
+        }
+        
+        .modal-btn-cancel:hover {
+            background: #e2e8f0;
+            transform: translateY(-2px);
+        }
+        
+        .modal-btn-confirm {
+            background: linear-gradient(135deg, #1d4ed8, #1e40af);
+            color: white;
+            box-shadow: 0 4px 15px rgba(29, 78, 216, 0.3);
+        }
+        
+        .modal-btn-confirm:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(29, 78, 216, 0.4);
+        }
+    </style>
+
+    <script type="module">
+        // Firebase SDK import
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js';
+        import { getAuth, onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js';
+
+        // Firebase config - same as login.html
+        const firebaseConfig = {
+            apiKey: "AIzaSyD8FLY3Yo6g8eAFJMTgPuOaH_Rv5XIojas",
+            authDomain: "skillstreetofficial.firebaseapp.com",
+            projectId: "skillstreetofficial",
+            storageBucket: "skillstreetofficial.firebasestorage.app",
+            messagingSenderId: "1518002311",
+            appId: "1:1518002311:web:24acfa0a6e7fa84e951822",
+            measurementId: "G-JXWT315DGQ"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        // UI elements
+        const loginLink = document.getElementById('login-link');
+        const userSection = document.getElementById('user-section');
+        const userName = document.getElementById('user-name');
+        const mobileLoginLink = document.getElementById('mobile-login-link');
+        const mobileUserSection = document.getElementById('mobile-user-section');
+        const mobileUserName = document.getElementById('mobile-user-name');
+
+        // Check auth state
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                // User is signed in
+                const displayName = user.displayName || user.email.split('@')[0];
+                
+                // Desktop nav
+                if (loginLink) loginLink.classList.add('hidden');
+                if (userSection) {
+                    userSection.classList.remove('hidden');
+                    userSection.classList.add('flex');
+                }
+                if (userName) userName.textContent = `Welcome, ${displayName}`;
+                
+                // Mobile nav
+                if (mobileLoginLink) mobileLoginLink.classList.add('hidden');
+                if (mobileUserSection) mobileUserSection.classList.remove('hidden');
+                if (mobileUserName) mobileUserName.textContent = `Welcome, ${displayName}`;
+            } else {
+                // User is signed out
+                // Desktop nav
+                if (loginLink) loginLink.classList.remove('hidden');
+                if (userSection) {
+                    userSection.classList.add('hidden');
+                    userSection.classList.remove('flex');
+                }
+                
+                // Mobile nav
+                if (mobileLoginLink) mobileLoginLink.classList.remove('hidden');
+                if (mobileUserSection) mobileUserSection.classList.add('hidden');
+            }
+        });
+
+        // Custom Logout Modal Functions
+        window.logoutUser = function() {
+            document.getElementById('logoutModal').classList.add('show');
+        };
+        
+        window.closeLogoutModal = function() {
+            document.getElementById('logoutModal').classList.remove('show');
+        };
+        
+        window.confirmLogout = async function() {
+            closeLogoutModal();
+            try {
+                await signOut(auth);
+                localStorage.removeItem('user');
+                window.location.href = 'login.html';
+            } catch (error) {
+                console.error('Logout error:', error);
+            }
+        };
+
+        // Existing quote code
+        const quotes = [
+            {text: "Education is the most powerful weapon which you can use to change the world.", author: "Nelson Mandela"},
+            {text: "The future belongs to those who learn more skills and combine them in creative ways.", author: "Robert Greene"},
+            {text: "Your skills are the only capital that will never fail you.", author: "Skill Street Philosophy"},
+            {text: "Bridge the gap between potential and performance.", author: "Mission Statement"},
+            {text: "Learning is a treasure that will follow its owner everywhere.", author: "Chinese Proverb"},
+        ];
+
+        let quoteIndex = 0;
+        const textEl = document.getElementById("quote-text");
+        const authorEl = document.getElementById("quote-author");
+        const box = document.getElementById("quote-box");
+
+        function showQuote() {
+            if (!box) return;
+
+            box.style.opacity = "0";
+            box.style.transform = "translateY(20px)";
+
+            setTimeout(() => {
+                const nextQuote = quotes[quoteIndex];
+                quoteIndex = (quoteIndex + 1) % quotes.length;
+                textEl.textContent = `"${nextQuote.text}"`;
+                authorEl.textContent = nextQuote.author;
+                box.style.opacity = "1";
+                box.style.transform = "translateY(0px)";
+            }, 800);
+        }
+
+        setInterval(showQuote, 6000);
+        showQuote();
+
+        // Mobile menu toggle
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+
+        window.closeMobileMenu = function() {
+            mobileMenu.classList.add('hidden');
+        };
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        window.showPage = function(pageName, sectionId = null) {
+            document.querySelectorAll('.page-content').forEach(p => p.classList.remove('active'));
+            const target = document.getElementById(pageName + '-page');
+            if (target) target.classList.add('active');
+            
+            if (sectionId) {
+                const sec = document.getElementById(sectionId);
+                if (sec) sec.scrollIntoView({ behavior: 'smooth' });
+            } else {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        };
+    </script>
+</body>
+</html>
+
