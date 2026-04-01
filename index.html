@@ -630,6 +630,7 @@
         const mobileLoginLink = document.getElementById('mobile-login-link');
         const mobileUserSection = document.getElementById('mobile-user-section');
         const mobileUserName = document.getElementById('mobile-user-name');
+        const applyNowButton = document.getElementById('apply-now-button');
 
         // Check auth state
         onAuthStateChanged(auth, (user) => {
@@ -649,6 +650,7 @@
                 if (mobileLoginLink) mobileLoginLink.classList.add('hidden');
                 if (mobileUserSection) mobileUserSection.classList.remove('hidden');
                 if (mobileUserName) mobileUserName.textContent = `Welcome, ${displayName}`;
+                if (applyNowButton) applyNowButton.classList.remove('hidden');
             } else {
                 // User is signed out
                 // Desktop nav
@@ -661,6 +663,7 @@
                 // Mobile nav
                 if (mobileLoginLink) mobileLoginLink.classList.remove('hidden');
                 if (mobileUserSection) mobileUserSection.classList.add('hidden');
+                if (applyNowButton) applyNowButton.classList.add('hidden');
             }
         });
 
