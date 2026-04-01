@@ -48,6 +48,7 @@
                 class="btn-glass-primary apply-button rounded-full px-6 py-2 text-sm font-semibold text-orange-50"
                 style="display: none;"
                 aria-hidden="true"
+        
             >
                 Apply now
             </button>`
@@ -634,6 +635,14 @@
         const mobileUserSection = document.getElementById('mobile-user-section');
         const mobileUserName = document.getElementById('mobile-user-name');
         const applyNowButton = document.getElementById('apply-now-button');
+
+        function setApplyButtonVisibility(isLoggedIn) {
+            if (!applyNowButton) return;
+
+            applyNowButton.classList.toggle('hidden', !isLoggedIn);
+            applyNowButton.style.display = isLoggedIn ? 'inline-flex' : 'none';
+            applyNowButton.setAttribute('aria-hidden', (!isLoggedIn).toString());
+        }
 
         // Check auth state
         onAuthStateChanged(auth, (user) => {
