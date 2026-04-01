@@ -650,7 +650,7 @@
                 if (mobileLoginLink) mobileLoginLink.classList.add('hidden');
                 if (mobileUserSection) mobileUserSection.classList.remove('hidden');
                 if (mobileUserName) mobileUserName.textContent = `Welcome, ${displayName}`;
-                if (applyNowButton) applyNowButton.classList.remove('hidden');
+                setApplyButtonVisibility(true);
             } else {
                 // User is signed out
                 // Desktop nav
@@ -663,7 +663,7 @@
                 // Mobile nav
                 if (mobileLoginLink) mobileLoginLink.classList.remove('hidden');
                 if (mobileUserSection) mobileUserSection.classList.add('hidden');
-                if (applyNowButton) applyNowButton.classList.add('hidden');
+               setApplyButtonVisibility(false);
             }
         });
 
