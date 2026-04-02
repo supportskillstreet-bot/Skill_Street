@@ -185,59 +185,20 @@ body{
 .form-status.error{
     color: #d93025;
 }
-@media (max-width:640px)
+@media (max-width:991px)
 {
-    body{
-        align-items: flex-start;
-        padding: 0;
-    }
     .contact{
-        min-height: auto;
-        padding: 28px 18px 40px;
-    }
-    .contact .content h2{
-        font-size: 30px;
-    }
-    .contact .content p{
-        font-size: 16px;
-        line-height: 1.6;
+        padding:50px ;
     }
     .container-query{
-        margin-top: 24px;
-        gap: 24px;
+        flex-direction: column;
     }
-    .container-query .contactinfo .box{
-        padding: 16px 0;
-        align-items: flex-start;
+    .container-query.contactinfo{
+        margin-bottom: 40px;
     }
-    .container-query .contactinfo .box .icon{
-        min-width: 48px;
-        height: 48px;
-        font-size: 18px;
-    }
-    .container-query .contactinfo .box .text{
-        margin-left: 14px;
-        font-size: 15px;
-    }
-    .container-query .contactinfo .box .text h1{
-        font-size: 20px;
-    }
-    .contactform{
-        padding: 24px 18px;
-    }
-    .contactform h2{
-        font-size: 24px;
-    }
-    .contactform .inputbox input,
-    .contactform .inputbox textarea,
-    .contactform .inputbox label{
-        font-size: 15px;
-    }
-    .contactform .inputbox textarea{
-        min-height: 120px;
-    }
-    .contactform .inputbox .submit{
-        font-size: 16px;
-        padding: 12px;
+    .container-query.contactinfo,
+    .contactform
+    {
+        width: 100%;
     }
 }
