@@ -48,10 +48,12 @@
                 
 
            
-            <div class="contactform">
+       <div class="contactform">
                
                     <h2>Send Message</h2>
-                     <form action="mailto:support.skillstreet@gmail.com" method="post" enctype="text/plain">
+                     <form id="contact-form" action="https://formsubmit.co/ajax/support.skillstreet@gmail.com" method="POST">
+                    <input type="hidden" name="_subject" value="New SkillStreet Contact Message">
+                    <input type="hidden" name="_captcha" value="false">
                     <div class="inputbox">
                         <input type="text" id="name" name="name" required="required">
                         <label for="name">Name</label>
@@ -71,10 +73,52 @@
                     <div class="inputbox">
                        <button type="submit" class="submit">Send</button> 
                     </div>
+                    <p id="form-status" class="form-status" aria-live="polite"></p>
                </form>
             </div>
         </div>
     </section>
+   
+     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script>
+        const contactForm = document.getElementById('contact-form');
+        const statusText = document.getElementById('form-status');
+        const submitButton = contactForm.querySelector('button[type="submit"]');
+
+        contactForm.addEventListener('submit', async function (event) {
+            event.preventDefault();
+
+            submitButton.disabled = true;
+            submitButton.textContent = 'Sending...';
+            statusText.textContent = 'Sending your message...';
+            statusText.className = 'form-status';
+
+            try {
+                const response = await fetch(contactForm.action, {
+                    method: 'POST',
+                    body: new FormData(contactForm),
+                    headers: {
+                        Accept: 'application/json'
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error('Request failed');
+                }
+
+                contactForm.reset();
+                statusText.textContent = 'Your message has been sent successfully.';
+                statusText.className = 'form-status success';
+            } catch (error) {
+                statusText.textContent = 'Message could not be sent right now. Please try again.';
+                statusText.className = 'form-status error';
+            } finally {
+                submitButton.disabled = false;
+                submitButton.textContent = 'Send';
+            }
+        });
+    </script>
    
      <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
