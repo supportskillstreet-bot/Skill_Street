@@ -7,7 +7,7 @@
     
 }
 body{
-    background-image: url(Background\ imaage\ .jpeg);
+    background: linear-gradient(180deg, #1e3a8a 0%, #1e40af 25%, #1d4ed8 50%, #172554 75%, #020617 100%);
     display: flex;
     justify-content: center;
     align-items: center;
