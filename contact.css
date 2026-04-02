@@ -163,6 +163,23 @@ body{
    box-shadow: 0 0 20px #111;
 
 }
+.contactform .inputbox .submit:disabled{
+    opacity: 0.7;
+    cursor: wait;
+}
+.form-status{
+    min-height: 24px;
+    margin-top: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #0B0F1A;
+}
+.form-status.success{
+    color: #0b8f4d;
+}
+.form-status.error{
+    color: #d93025;
+}
 @media (max-width:991px)
 {
     .contact{
