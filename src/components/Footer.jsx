@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-export default function Footer({ onSectionSelect }) {
+export default function Footer() {
   return (
     <footer className="bg-gradient-to-b from-blue-950 to-black py-16 px-6 border-t border-white/5 text-white">
       <div className="max-w-7xl mx-auto">
@@ -13,6 +13,14 @@ export default function Footer({ onSectionSelect }) {
             <div className="flex space-x-4 mt-6">
               <a href="https://www.linkedin.com/company/skill.street/" target="_blank" rel="noreferrer" className="text-slate-400 hover:text-white transition-colors">
                 <i className="fab fa-linkedin text-xl"></i>
+              </a>
+
+              <a href="https://www.instagram.com/skillstreet_official?igsh=Njl5Z3IzaWhxczlh" target="_blank" rel="noreferrer" className="text-slate-400 hover:text-white transition-colors">
+                <i className="fab fa-instagram text-xl"></i>
+              </a>
+
+              <a href="https://www.reddit.com/u/SkillStreetofficial/s/oEJ9IjSbz2" target="_blank" rel="noreferrer" className="text-slate-400 hover:text-white transition-colors">
+                <i className="fab fa-reddit text-xl"></i>
               </a>
             </div>
           </div>
@@ -40,8 +48,8 @@ export default function Footer({ onSectionSelect }) {
                 </Link>
               </li>
               <li>
-                <Link to="/privacy" className="cursor-pointer hover:text-white">
-                  Privacy Policy
+                <Link to="/terms" className="cursor-pointer hover:text-white">
+                  Terms and Conditions
                 </Link>
               </li>
             </ul>

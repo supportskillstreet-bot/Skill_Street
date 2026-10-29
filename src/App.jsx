@@ -11,8 +11,8 @@ import Profile from './pages/Profile.jsx';
 import LoginRegister from './pages/LoginRegister.jsx';
 import ForgotPassword from './pages/ForgotPassword.jsx';
 import Disclaimer from './pages/Disclaimer.jsx';
-import PrivacyPolicy from './pages/PrivacyPolicy.jsx';
 import TermsAndConditions from './pages/TermsAndConditions.jsx';
+import Admin from './pages/Admin.jsx';
 import ProtectedRoute from './components/ProtectedRoute.jsx';
 import { auth, db } from './firebase.js';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
@@ -41,16 +41,17 @@ function App() {
       }
 
       (async () => {
-        let role = localStorage.getItem(`ss_user_role_${currentUser.uid}`) || localStorage.getItem(`ss_user_role_${currentUser.email}`) || null;
-        if (!role) {
-          try {
-            const userSnapshot = await getDoc(doc(db, 'users', currentUser.uid));
-            if (userSnapshot.exists()) {
-              role = userSnapshot.data()?.role || null;
-            }
-          } catch (error) {
-            console.error('Error loading user role:', error);
+        let role = null;
+        let adminApproved = false;
+        try {
+          const userSnapshot = await getDoc(doc(db, 'users', currentUser.uid));
+          if (userSnapshot.exists()) {
+            const profile = userSnapshot.data();
+            role = profile.role || role;
+            adminApproved = profile.role === 'admin';
           }
+        } catch (error) {
+          console.error('Error loading user approval:', error);
         }
 
         const stored = {
@@ -59,7 +60,8 @@ function App() {
           displayName: currentUser.displayName,
           photoURL: currentUser.photoURL,
           emailVerified: currentUser.emailVerified,
-          role
+          role,
+          adminApproved
         };
         setUser(stored);
         localStorage.setItem('user', JSON.stringify(stored));
@@ -81,10 +83,6 @@ function App() {
   };
 
   const handleSectionSelect = (section) => {
-    if (location.pathname !== '/') {
-      navigate('/', { state: { scrollTo: section } });
-      return;
-    }
     navigate('/', { state: { scrollTo: section } });
   };
 
@@ -119,21 +117,29 @@ function App() {
             path="/profile"
             element={
               <ProtectedRoute user={user} authLoading={authLoading}>
-                <Profile user={user} />
+                <Profile user={user} onUserUpdate={setUser} />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin"
+            element={
+              <ProtectedRoute user={user} authLoading={authLoading} requiredRole="admin" requireAdminApproval>
+                <Admin user={user} />
               </ProtectedRoute>
             }
           />
           <Route
             path="/login"
-            element={!authLoading && user ? <Navigate to={user.role === 'startup' ? '/company' : '/student'} replace /> : <LoginRegister />}
+            element={!authLoading && user ? <Navigate to={user.role === 'admin' ? '/admin' : user.role === 'startup' ? '/company' : user.role === 'student' ? '/student' : '/profile'} replace /> : <LoginRegister />}
           />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/disclaimer" element={<Disclaimer />} />
-          <Route path="/privacy" element={<PrivacyPolicy />} />
-          <Route path="/terms" element={<PrivacyPolicy />} />
+          <Route path="/privacy" element={<TermsAndConditions />} />
+          <Route path="/terms" element={<TermsAndConditions />} />
         </Routes>
       </main>
-      <Footer onSectionSelect={handleSectionSelect} />
+      <Footer />
       <LogoutModal
         open={logoutOpen}
         onClose={() => setLogoutOpen(false)}

@@ -43,18 +43,18 @@ export default function ForgotPassword() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-900 via-blue-950 to-black text-white py-10 px-4 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-xl rounded-[2rem] border border-white/10 bg-white/5 backdrop-blur-sm p-6 sm:p-8 shadow-2xl">
-        <div className="mb-8 text-center">
+    <div className="min-h-screen bg-gradient-to-b from-blue-900 via-blue-950 to-black text-white pt-32 pb-6 px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-xl rounded-[1.5rem] border border-white/10 bg-white/5 backdrop-blur-sm p-4 sm:p-6 shadow-2xl">
+        <div className="mb-5 text-center">
           <h1 className="text-2xl sm:text-3xl font-bold">Reset Your Password</h1>
-          <p className="mt-3 text-sm text-slate-300">Enter the email address for your account and we'll send a reset link.</p>
+          <p className="mt-2 text-sm text-slate-300">Enter the email address for your account and we'll send a reset link.</p>
         </div>
         {authMessage ? (
           <div className={`rounded-2xl px-4 py-3 text-sm ${authType === 'error' ? 'border border-red-400 bg-red-500/10 text-red-200' : 'border border-emerald-400 bg-emerald-500/10 text-emerald-200'}`}>
             {authMessage}
           </div>
         ) : null}
-        <form onSubmit={handleSubmit} className="mt-6 space-y-5">
+        <form onSubmit={handleSubmit} className="mt-4 space-y-3">
           <div>
             <label htmlFor="email" className="block text-sm font-medium text-slate-300">Email</label>
             <input
@@ -63,19 +63,19 @@ export default function ForgotPassword() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              className="mt-2 w-full rounded-2xl border border-white/10 bg-blue-900/50 px-4 py-3 text-white outline-none transition focus:border-orange-400 focus:ring-2 focus:ring-orange-400/20"
+              className="mt-1 w-full rounded-xl border border-white/10 bg-blue-900/50 px-4 py-2.5 text-white outline-none transition focus:border-orange-400 focus:ring-2 focus:ring-orange-400/20"
             />
           </div>
 
           <button
             type="submit"
             disabled={submitting}
-            className="w-full rounded-2xl bg-orange-500 px-4 py-3 text-sm font-semibold text-slate-950 transition hover:bg-orange-400 disabled:cursor-not-allowed disabled:opacity-70"
+            className="w-full rounded-xl bg-orange-500 px-4 py-2.5 text-sm font-semibold text-slate-950 transition hover:bg-orange-400 disabled:cursor-not-allowed disabled:opacity-70"
           >
             {submitting ? 'Sending reset link...' : 'Send Reset Link'}
           </button>
         </form>
-        <div className="mt-6 text-center text-sm text-slate-300">
+        <div className="mt-4 text-center text-sm text-slate-300">
           <p>
             Remembered your password?{' '}
             <Link to="/login" className="font-semibold text-orange-300 hover:text-orange-400">Back to Login</Link>

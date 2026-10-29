@@ -19,7 +19,47 @@ body,
 body {
   margin: 0;
   padding: 0;
-  font-family: inherit;
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+[data-scroll-reveal] {
+  opacity: 1;
+  transform: none;
+}
+
+[data-scroll-reveal].scroll-reveal-pending {
+  opacity: 0;
+  transform: translateY(32px) scale(0.96);
+  will-change: opacity, transform;
+}
+
+[data-scroll-reveal].scroll-reveal-enter {
+  animation: scroll-pop-in 700ms cubic-bezier(0.2, 0.75, 0.25, 1) both;
+  animation-delay: var(--reveal-delay, 0ms);
+}
+
+@keyframes scroll-pop-in {
+  from {
+    opacity: 0;
+    transform: translateY(32px) scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  [data-scroll-reveal],
+  [data-scroll-reveal].scroll-reveal-pending,
+  [data-scroll-reveal].scroll-reveal-enter {
+    opacity: 1;
+    transform: none;
+    animation: none;
+    will-change: auto;
+  }
 }
 
 button,
@@ -78,6 +118,23 @@ button {
   transform: translateY(-3px);
 }
 
+.social-sign-in-button {
+  position: relative;
+  overflow: hidden;
+  -webkit-backdrop-filter: blur(0);
+  backdrop-filter: blur(0);
+  transition: background-color 180ms ease, border-color 180ms ease, box-shadow 180ms ease, backdrop-filter 180ms ease, transform 180ms ease;
+}
+
+.social-sign-in-button:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.38);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18), 0 12px 28px rgba(2, 6, 23, 0.24);
+  -webkit-backdrop-filter: blur(14px) saturate(145%);
+  backdrop-filter: blur(14px) saturate(145%);
+  transform: translateY(-1px);
+}
+
 .btn-glass-primary,
 .btn-glass-white,
 .btn-glass {
@@ -134,26 +191,26 @@ button {
   color: var(--accent);
 }
 
-.student-page .view {
+.student-dashboard .view {
   display: none;
 }
 
-.student-page .view.active {
+.student-dashboard .view.active {
   display: block;
 }
 
-.student-page .nav-tabs {
+.student-dashboard .nav-tabs {
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
   margin-bottom: 1.5rem;
 }
 
-.student-page .nav-tab {
+.student-dashboard .nav-tab {
   transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-.student-page .section-header {
+.student-dashboard .section-header {
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
@@ -162,26 +219,26 @@ button {
   margin-bottom: 1.5rem;
 }
 
-.student-page .section-title {
+.student-dashboard .section-title {
   font-size: 1.75rem;
   font-weight: 700;
   color: #ffffff;
 }
 
-.student-page .desc-text {
+.student-dashboard .desc-text {
   color: #94a3b8;
   max-width: 40rem;
 }
 
-.student-page .filters,
-.student-page .sub-filters {
+.student-dashboard .filters,
+.student-dashboard .sub-filters {
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
   margin-bottom: 1.5rem;
 }
 
-.student-page .filter-chip {
+.student-dashboard .filter-chip {
   border-radius: 9999px;
   border: 1px solid rgba(148, 163, 184, 0.24);
   padding: 0.65rem 1rem;
@@ -191,13 +248,13 @@ button {
   transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
 
-.student-page .filter-chip.active {
+.student-dashboard .filter-chip.active {
   background: #fb923c;
   color: #0f172a;
   border-color: rgba(251, 146, 60, 0.5);
 }
 
-.student-page .empty-state {
+.student-dashboard .empty-state {
   border: 1px solid rgba(148, 163, 184, 0.16);
   background: rgba(15, 23, 42, 0.9);
   padding: 2rem;
@@ -206,30 +263,30 @@ button {
   color: #cbd5e1;
 }
 
-.student-page .empty-state .empty-icon {
+.student-dashboard .empty-state .empty-icon {
   font-size: 2.5rem;
   margin-bottom: 1rem;
 }
 
-.student-page .task-grid {
+.student-dashboard .task-grid {
   display: grid;
   grid-template-columns: repeat(1, minmax(0, 1fr));
   gap: 1.5rem;
 }
 
 @media (min-width: 768px) {
-  .student-page .task-grid {
+  .student-dashboard .task-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
 @media (min-width: 1024px) {
-  .student-page .task-grid {
+  .student-dashboard .task-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
-.student-page .task-card {
+.student-dashboard .task-card {
   border-radius: 1.5rem;
   border: 1px solid rgba(148, 163, 184, 0.12);
   background: rgba(15, 23, 42, 0.85);
@@ -239,7 +296,7 @@ button {
   justify-content: space-between;
 }
 
-.student-page .task-card-header {
+.student-dashboard .task-card-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -248,43 +305,43 @@ button {
   flex-wrap: wrap;
 }
 
-.student-page .task-title {
+.student-dashboard .task-title {
   font-size: 1.15rem;
   font-weight: 700;
   color: #ffffff;
 }
 
-.student-page .task-desc {
+.student-dashboard .task-desc {
   color: #94a3b8;
   margin-top: 0.75rem;
   line-height: 1.7;
 }
 
-.student-page .skill-tag,
-.student-page .sub-task-badge,
-.student-page .type-link,
-.student-page .type-text,
-.student-page .type-file {
+.student-dashboard .skill-tag,
+.student-dashboard .sub-task-badge,
+.student-dashboard .type-link,
+.student-dashboard .type-text,
+.student-dashboard .type-file {
   border-radius: 9999px;
   padding: 0.3rem 0.75rem;
   font-size: 0.75rem;
 }
 
-.student-page .skill-tag {
+.student-dashboard .skill-tag {
   background: rgba(148, 163, 184, 0.12);
   color: #cbd5e1;
 }
 
-.student-page .reward-badge,
-.student-page .task-participants {
+.student-dashboard .reward-badge,
+.student-dashboard .task-participants {
   display: block;
 }
 
-.student-page .reward-badge {
+.student-dashboard .reward-badge {
   font-weight: 600;
 }
 
-.student-page .task-footer {
+.student-dashboard .task-footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -293,96 +350,96 @@ button {
   flex-wrap: wrap;
 }
 
-.student-page .card-actions {
+.student-dashboard .card-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
   justify-content: flex-end;
 }
 
-.student-page .btn-edit,
-.student-page .btn-delete,
-.student-page .btn-join,
-.student-page .btn-sm,
-.student-page .btn-sm-primary,
-.student-page .btn-danger-lg {
+.student-dashboard .btn-edit,
+.student-dashboard .btn-delete,
+.student-dashboard .btn-join,
+.student-dashboard .btn-sm,
+.student-dashboard .btn-sm-primary,
+.student-dashboard .btn-danger-lg {
   transition: transform 0.2s ease, background-color 0.2s ease;
 }
 
-.student-page .btn-edit:hover,
-.student-page .btn-delete:hover,
-.student-page .btn-join:hover,
-.student-page .btn-sm:hover,
-.student-page .btn-sm-primary:hover,
-.student-page .btn-danger-lg:hover {
+.student-dashboard .btn-edit:hover,
+.student-dashboard .btn-delete:hover,
+.student-dashboard .btn-join:hover,
+.student-dashboard .btn-sm:hover,
+.student-dashboard .btn-sm-primary:hover,
+.student-dashboard .btn-danger-lg:hover {
   transform: translateY(-1px);
 }
 
-.student-page .hero {
+.student-dashboard .hero {
   max-width: 72rem;
   margin: auto;
 }
 
-.student-page .hero-stats {
+.student-dashboard .hero-stats {
   margin-top: 1.5rem;
 }
 
-.student-page .hero-stat {
+.student-dashboard .hero-stat {
   border-radius: 1.5rem;
   border: 1px solid rgba(148, 163, 184, 0.12);
   background: rgba(15, 23, 42, 0.85);
 }
 
-.student-page .create-form {
+.student-dashboard .create-form {
   border-radius: 1.5rem;
   background: rgba(15, 23, 42, 0.9);
   border: 1px solid rgba(148, 163, 184, 0.16);
   padding: 1.75rem;
 }
 
-.student-page .form-grid {
+.student-dashboard .form-grid {
   display: grid;
   grid-template-columns: repeat(1, minmax(0, 1fr));
   gap: 1rem;
 }
 
 @media (min-width: 768px) {
-  .student-page .form-grid {
+  .student-dashboard .form-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
-.student-page .form-label {
+.student-dashboard .form-label {
   color: #cbd5e1;
   font-size: 0.95rem;
   font-weight: 600;
 }
 
-.student-page .form-input {
+.student-dashboard .form-input {
   min-height: 3rem;
 }
 
-.student-page .skill-pick,
-.student-page .reward-opt {
+.student-dashboard .skill-pick,
+.student-dashboard .reward-opt {
   border-radius: 9999px;
   border: 1px solid rgba(148, 163, 184, 0.16);
   transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
 
-.student-page .skill-pick:hover,
-.student-page .reward-opt:hover {
+.student-dashboard .skill-pick:hover,
+.student-dashboard .reward-opt:hover {
   background: rgba(251, 146, 60, 0.08);
 }
 
-.student-page .publish-btn {
+.student-dashboard .publish-btn {
   transition: transform 0.2s ease, background-color 0.2s ease;
 }
 
-.student-page .publish-btn:hover {
+.student-dashboard .publish-btn:hover {
   transform: translateY(-1px);
 }
 
-.student-page .profile-header {
+.student-dashboard .profile-header {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
@@ -393,7 +450,7 @@ button {
   padding: 1.5rem;
 }
 
-.student-page .profile-avatar {
+.student-dashboard .profile-avatar {
   width: 4.5rem;
   height: 4.5rem;
   border-radius: 1.25rem;
@@ -405,168 +462,461 @@ button {
   font-weight: 700;
 }
 
-.student-page .profile-name {
+.student-dashboard .profile-name {
   font-size: 1.25rem;
   font-weight: 700;
   color: #ffffff;
 }
 
-.student-page .profile-badges {
+.student-dashboard .profile-badges {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
   margin-top: 0.75rem;
 }
 
-.student-page {
+.student-dashboard {
   padding-bottom: 4rem;
 }
 
-.student-page .section {
+.student-dashboard .section {
   max-width: 86rem;
   margin: 0 auto 2rem;
   padding: 1.5rem;
 }
 
-.student-page .section:not(:last-child) {
+.student-dashboard .section:not(:last-child) {
   margin-bottom: 2.5rem;
 }
 
-.student-page .view {
+.student-dashboard .view {
   background: rgba(15, 23, 42, 0.75);
   border: 1px solid rgba(148, 163, 184, 0.12);
   border-radius: 1.75rem;
   padding: 1.5rem;
 }
 
-.student-page .section-header {
+.student-dashboard .section-header {
   align-items: flex-end;
 }
 
-.student-page .section-header h2 {
+.student-dashboard .section-header h2 {
   margin-bottom: 0.35rem;
 }
 
-.student-page #task-count,
-.student-page #sub-total {
+.student-dashboard #task-count,
+.student-dashboard #sub-total {
   font-size: 0.95rem;
   color: #94a3b8;
   font-weight: 600;
 }
 
-.student-page .filters,
-.student-page .sub-filters {
+.student-dashboard .filters,
+.student-dashboard .sub-filters {
   gap: 0.75rem;
 }
 
-.student-page .form-row {
+.student-dashboard .form-row {
   margin-bottom: 1rem;
 }
 
-.student-page .form-row:last-child {
+.student-dashboard .form-row:last-child {
   margin-bottom: 0;
 }
 
-.student-page .create-form {
+.student-dashboard .create-form {
   margin-top: 1.5rem;
 }
 
-.student-page .publish-btn {
+.student-dashboard .publish-btn {
   width: 100%;
 }
 
-.student-page .profile-stats {
+.student-dashboard .profile-stats {
   margin-top: 1.5rem;
 }
 
-.student-page .stat-card {
+/* SkillStreet visual system: a confident navy canvas, warm paper surfaces, and
+   a punch of orange reserved for the actions that matter. */
+:root {
+  color-scheme: dark;
+  --accent: #f97316;
+  --ss-navy: #0f172a;
+  --ss-deep: #020617;
+  --ss-blue: #1d4ed8;
+  --ss-paper: #f8fafc;
+  --ss-muted: #a8b6ca;
+  --ss-line: rgba(148, 163, 184, 0.2);
+  --ss-panel: rgba(15, 23, 42, 0.82);
+  --ss-shadow: 0 24px 70px rgba(2, 6, 23, 0.28);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
+  background: var(--ss-deep);
+}
+
+body {
+  min-width: 320px;
+  background:
+    radial-gradient(ellipse at 10% 0%, rgba(29, 78, 216, 0.18), transparent 34rem),
+    linear-gradient(145deg, #172554 0%, #0b1f3a 52%, var(--ss-deep) 100%);
+  color: #f8fafc;
+  font-family: "Plus Jakarta Sans", "Segoe UI", sans-serif;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  color: #fff;
+  background: #c2410c;
+}
+
+:focus-visible {
+  outline: 3px solid #fb923c;
+  outline-offset: 3px;
+}
+
+.app-shell {
+  min-height: 100vh;
+  overflow: clip;
+}
+
+.app-shell>main {
+  min-height: 65vh;
+}
+
+.app-shell>main>div.min-h-screen,
+.app-shell>main>section.min-h-screen {
+  position: relative;
+  isolation: isolate;
+  background:
+    radial-gradient(ellipse at 90% 5%, rgba(29, 78, 216, 0.2), transparent 34rem),
+    radial-gradient(ellipse at 0% 65%, rgba(249, 115, 22, 0.07), transparent 28rem),
+    linear-gradient(145deg, #172554 0%, #0b1f3a 58%, #020617 100%) !important;
+}
+
+.app-shell>main>div.min-h-screen::before,
+.app-shell>main>section.min-h-screen::before {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  pointer-events: none;
+  content: "";
+  opacity: 0.22;
+  background-image: radial-gradient(rgba(148, 163, 184, 0.34) 0.7px, transparent 0.7px);
+  background-size: 20px 20px;
+  mask-image: linear-gradient(to bottom, black, transparent 75%);
+}
+
+.app-shell>main>div.min-h-screen>div[class*="mx-auto"][class*="max-w"],
+.app-shell>main>section.min-h-screen>div[class*="mx-auto"][class*="max-w"] {
+  position: relative;
+  z-index: 1;
+}
+
+.app-shell>main [class*="rounded-"][class*="border-white/10"][class*="bg-white/5"],
+.app-shell>main [class*="rounded-"][class*="border-white/10"][class*="bg-white/[0.06]"],
+.app-shell>main [class*="rounded-"][class*="bg-slate-900/70"] {
+  border-color: rgba(148, 163, 184, 0.18);
+  background: linear-gradient(145deg, rgba(23, 37, 84, 0.9), rgba(11, 31, 58, 0.96));
+  box-shadow: 0 20px 55px rgba(2, 6, 23, 0.22);
+}
+
+.app-shell>main [class*="bg-blue-900/60"],
+.app-shell>main [class*="bg-blue-900/50"],
+.app-shell>main [class*="bg-blue-900/30"] {
+  background-color: rgba(23, 37, 84, 0.82);
+}
+
+.app-shell>main button,
+.app-shell>main a[class*="bg-orange-"],
+.app-shell>main a[class*="rounded-"][class*="border"] {
+  transition: color 160ms ease, background-color 160ms ease, border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+}
+
+.app-shell>main button:not(:disabled):hover,
+.app-shell>main a[class*="bg-orange-"]:hover {
+  transform: translateY(-1px);
+}
+
+.app-shell>main button:disabled {
+  cursor: not-allowed;
+  filter: saturate(0.72);
+}
+
+.app-shell>main button[class*="bg-orange-500"],
+.app-shell>main button[class*="bg-orange-600"],
+.app-shell>main a[class*="bg-orange-500"],
+.app-shell>main a[class*="bg-orange-600"] {
+  color: #17120d;
+  font-weight: 750;
+  box-shadow: 0 8px 20px rgba(249, 115, 22, 0.15);
+}
+
+.app-shell>main input:not([type="checkbox"]):not([type="radio"]):not([type="file"]),
+.app-shell>main textarea,
+.app-shell>main select {
+  min-height: 2.9rem;
+  border-color: rgba(148, 163, 184, 0.27);
+  border-radius: 0.75rem;
+  background-color: rgba(2, 6, 23, 0.58);
+  color: #f8fafc;
+  transition: border-color 160ms ease, box-shadow 160ms ease, background-color 160ms ease;
+}
+
+.app-shell>main textarea {
+  min-height: 6rem;
+}
+
+.app-shell>main input:not([type="checkbox"]):not([type="radio"])::placeholder,
+.app-shell>main textarea::placeholder {
+  color: #8191a8;
+}
+
+.app-shell>main input:not([type="checkbox"]):not([type="radio"]):not([type="file"]):focus,
+.app-shell>main textarea:focus,
+.app-shell>main select:focus {
+  border-color: #fb923c;
+  background-color: rgba(2, 6, 23, 0.82);
+  box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.14);
+  outline: none;
+}
+
+.app-shell>main input[type="checkbox"],
+.app-shell>main input[type="radio"] {
+  width: 1.05rem;
+  min-height: 1.05rem;
+  accent-color: #f97316;
+  vertical-align: middle;
+}
+
+.app-shell>main table {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.app-shell>main thead th {
+  white-space: nowrap;
+  background: rgba(2, 6, 23, 0.56);
+}
+
+.app-shell>main tbody tr {
+  transition: background-color 150ms ease;
+}
+
+.app-shell>main tbody tr:hover {
+  background: rgba(30, 64, 175, 0.12);
+}
+
+.student-dashboard .section {
+  max-width: 90rem;
+}
+
+.student-dashboard .view {
+  border-color: rgba(148, 163, 184, 0.18);
+  border-radius: 1.2rem;
+  background: rgba(11, 31, 58, 0.88);
+  box-shadow: 0 22px 55px rgba(2, 6, 23, 0.18);
+}
+
+.student-dashboard .task-card,
+.student-dashboard .hero-stat,
+.student-dashboard .create-form,
+.student-dashboard .profile-header {
+  border-color: rgba(148, 163, 184, 0.2);
+  background: linear-gradient(150deg, rgba(23, 37, 84, 0.94), rgba(11, 31, 58, 0.99));
+  box-shadow: 0 14px 36px rgba(2, 6, 23, 0.2);
+}
+
+.student-dashboard .task-card {
+  border-radius: 1.15rem;
+  transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.student-dashboard .task-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(251, 146, 60, 0.42);
+  box-shadow: 0 20px 40px rgba(2, 6, 23, 0.3);
+}
+
+.student-dashboard .filter-chip,
+.student-dashboard .skill-pick,
+.student-dashboard .reward-opt {
+  min-height: 2.65rem;
+  border-radius: 0.7rem;
+}
+
+.student-dashboard .filter-chip.active {
+  background: #f97316;
+  border-color: #fb923c;
+  color: #111827;
+  font-weight: 750;
+}
+
+.student-dashboard .empty-state {
+  border-radius: 1rem;
+  background: rgba(11, 31, 58, 0.84);
+}
+
+.app-shell>footer {
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid rgba(148, 163, 184, 0.2);
+  background: #020617 !important;
+}
+
+.app-shell>footer::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #f97316, #1d4ed8, transparent);
+  opacity: 0.75;
+}
+
+.app-shell>footer>div {
+  position: relative;
+}
+
+.app-shell>footer h4 {
+  color: #f8fafc;
+  letter-spacing: 0.025em;
+}
+
+.app-shell>footer a {
+  transition: color 150ms ease;
+}
+
+.app-shell>footer a:hover {
+  color: #fdba74;
+}
+
+.app-shell>footer [class*="text-slate-400"] {
+  color: #a8b6ca;
+}
+
+.app-shell>div.fixed.inset-0 {
+  backdrop-filter: blur(8px);
+}
+
+@media (max-width: 767px) {
+
+  .app-shell>main>div.min-h-screen,
+  .app-shell>main>section.min-h-screen {
+    padding-top: 6.25rem;
+  }
+
+  .student-dashboard .section {
+    padding-inline: 1rem;
+  }
+
+  .student-dashboard .view {
+    padding: 1.1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+.student-dashboard .stat-card {
   min-height: 8rem;
 }
 
-.student-page .task-history {
+.student-dashboard .task-history {
   margin-top: 1.5rem;
 }
 
-.student-page .history-item {
+.student-dashboard .history-item {
   gap: 1rem;
 }
 
-.student-page .history-title {
+.student-dashboard .history-title {
   font-size: 1rem;
 }
 
-.student-page .modal-overlay,
-.student-page .confirm-overlay {
+.student-dashboard .modal-overlay,
+.student-dashboard .confirm-overlay {
   background: rgba(0, 0, 0, 0.65);
 }
 
-.student-page .modal,
-.student-page .view-modal,
-.student-page .edit-modal,
-.student-page .confirm-box {
+.student-dashboard .modal,
+.student-dashboard .view-modal,
+.student-dashboard .edit-modal,
+.student-dashboard .confirm-box {
   width: min(100%, 52rem);
   max-width: 52rem;
 }
 
-.student-page .modal-body,
-.student-page .sub-text-content,
-.student-page .view-modal .modal-body {
+.student-dashboard .modal-body,
+.student-dashboard .sub-text-content,
+.student-dashboard .view-modal .modal-body {
   word-break: break-word;
 }
 
-.student-page .submit-area {
+.student-dashboard .submit-area {
   margin-top: 1.5rem;
 }
 
-.student-page .submit-tabs {
+.student-dashboard .submit-tabs {
   margin-bottom: 1rem;
 }
 
-.student-page .upload-zone {
+.student-dashboard .upload-zone {
   transition: border-color 0.2s ease, background-color 0.2s ease;
 }
 
-.student-page .upload-zone:hover {
+.student-dashboard .upload-zone:hover {
   border-color: rgba(251, 146, 60, 0.5);
   background: rgba(255, 255, 255, 0.04);
 }
 
-.student-page .file-chip {
+.student-dashboard .file-chip {
   background: rgba(255, 255, 255, 0.05);
 }
 
-.student-page .toast {
+.student-dashboard .toast {
   z-index: 60;
 }
 
 @media (max-width: 768px) {
-  .student-page .view {
+  .student-dashboard .view {
     padding: 1.25rem;
   }
 
-  .student-page .hero-stats {
+  .student-dashboard .hero-stats {
     grid-template-columns: 1fr;
   }
 
-  .student-page .profile-header {
+  .student-dashboard .profile-header {
     padding: 1.25rem;
   }
 
-  .student-page .profile-stats {
+  .student-dashboard .profile-stats {
     grid-template-columns: 1fr;
   }
 
-  .student-page .task-footer {
+  .student-dashboard .task-footer {
     flex-direction: column;
     align-items: stretch;
   }
 
-  .student-page .card-actions {
+  .student-dashboard .card-actions {
     justify-content: flex-start;
   }
 }
 
-.student-page .digital-badge {
+.student-dashboard .digital-badge {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
@@ -576,11 +926,22 @@ button {
   font-weight: 700;
 }
 
-.student-page .badge-orange { background: #f97316; color: #0f172a; }
-.student-page .badge-green { background: #22c55e; color: #082f22; }
-.student-page .badge-blue { background: #38bdf8; color: #0f172a; }
+.student-dashboard .badge-orange {
+  background: #f97316;
+  color: #0f172a;
+}
 
-.student-page .profile-stats {
+.student-dashboard .badge-green {
+  background: #22c55e;
+  color: #082f22;
+}
+
+.student-dashboard .badge-blue {
+  background: #38bdf8;
+  color: #0f172a;
+}
+
+.student-dashboard .profile-stats {
   display: grid;
   grid-template-columns: repeat(1, minmax(0, 1fr));
   gap: 1rem;
@@ -588,12 +949,12 @@ button {
 }
 
 @media (min-width: 768px) {
-  .student-page .profile-stats {
+  .student-dashboard .profile-stats {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
-.student-page .stat-card {
+.student-dashboard .stat-card {
   border-radius: 1.5rem;
   border: 1px solid rgba(148, 163, 184, 0.16);
   background: rgba(15, 23, 42, 0.85);
@@ -601,25 +962,25 @@ button {
   text-align: center;
 }
 
-.student-page .stat-card .num {
+.student-dashboard .stat-card .num {
   font-size: 1.75rem;
   font-weight: 700;
   color: #ffffff;
 }
 
-.student-page .stat-card .lbl {
+.student-dashboard .stat-card .lbl {
   margin-top: 0.5rem;
   color: #94a3b8;
   font-size: 0.85rem;
 }
 
-.student-page .task-history {
+.student-dashboard .task-history {
   margin-top: 1.5rem;
   display: grid;
   gap: 1rem;
 }
 
-.student-page .history-item {
+.student-dashboard .history-item {
   display: flex;
   justify-content: space-between;
   gap: 1rem;
@@ -629,32 +990,78 @@ button {
   background: rgba(15, 23, 42, 0.85);
 }
 
-.student-page .history-title {
+.student-dashboard .history-title {
   font-weight: 700;
   color: #ffffff;
 }
 
-.student-page .history-meta {
+/* Apply only to deliberately selected primary surfaces to avoid nested rings. */
+.app-shell>main .animated-border-surface {
+  position: relative;
+  isolation: isolate;
+}
+
+@property --ss-perimeter-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+.app-shell>main .animated-border-surface::before {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  padding: 1px;
+  border-radius: inherit;
+  background: conic-gradient(from var(--ss-perimeter-angle),
+      rgba(59, 130, 246, 0.04) 0deg,
+      rgba(59, 130, 246, 0.82) 72deg,
+      rgba(249, 115, 22, 0.9) 142deg,
+      rgba(59, 130, 246, 0.16) 220deg,
+      rgba(249, 115, 22, 0.72) 292deg,
+      rgba(59, 130, 246, 0.04) 360deg);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+  content: "";
+  animation: ss-perimeter-flow 12s linear infinite;
+}
+
+@keyframes ss-perimeter-flow {
+  to {
+    --ss-perimeter-angle: 1turn;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .app-shell>main .animated-border-surface::before {
+    animation: none;
+  }
+}
+
+.student-dashboard .history-meta {
   color: #94a3b8;
   font-size: 0.95rem;
 }
 
-.student-page .modal-overlay,
-.student-page .confirm-overlay {
+.student-dashboard .modal-overlay,
+.student-dashboard .confirm-overlay {
   background: rgba(0, 0, 0, 0.65);
 }
 
-.student-page .modal,
-.student-page .confirm-box,
-.student-page .view-modal,
-.student-page .edit-modal {
+.student-dashboard .modal,
+.student-dashboard .confirm-box,
+.student-dashboard .view-modal,
+.student-dashboard .edit-modal {
   border-radius: 1.75rem;
   border: 1px solid rgba(148, 163, 184, 0.16);
   box-shadow: 0 40px 120px rgba(0, 0, 0, 0.35);
 }
 
-.student-page .modal-header,
-.student-page .modal-footer {
+.student-dashboard .modal-header,
+.student-dashboard .modal-footer {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -662,75 +1069,75 @@ button {
   gap: 1rem;
 }
 
-.student-page .modal-title-txt {
+.student-dashboard .modal-title-txt {
   color: #ffffff;
 }
 
-.student-page .modal-company {
+.student-dashboard .modal-company {
   color: #94a3b8;
 }
 
-.student-page .modal-body {
+.student-dashboard .modal-body {
   color: #cbd5e1;
 }
 
-.student-page .info-row {
+.student-dashboard .info-row {
   display: grid;
   grid-template-columns: repeat(1, minmax(0, 1fr));
   gap: 1rem;
 }
 
 @media (min-width: 640px) {
-  .student-page .info-row {
+  .student-dashboard .info-row {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
-.student-page .info-item label {
+.student-dashboard .info-item label {
   color: #94a3b8;
   font-size: 0.8rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
 }
 
-.student-page .info-item .val {
+.student-dashboard .info-item .val {
   margin-top: 0.5rem;
   font-weight: 700;
   color: #ffffff;
 }
 
-.student-page .info-item .accent {
+.student-dashboard .info-item .accent {
   color: #fb923c;
 }
 
-.student-page .submit-tabs {
+.student-dashboard .submit-tabs {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
   margin-top: 1rem;
 }
 
-.student-page .submit-tab {
+.student-dashboard .submit-tab {
   border-radius: 9999px;
   padding: 0.55rem 1rem;
   transition: all 0.2s ease;
 }
 
-.student-page .input-field {
+.student-dashboard .input-field {
   width: 100%;
 }
 
-.student-page .upload-zone {
+.student-dashboard .upload-zone {
   min-height: 5rem;
 }
 
-.student-page .file-preview {
+.student-dashboard .file-preview {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
 }
 
-.student-page .file-chip {
+.student-dashboard .file-chip {
   display: inline-flex;
   align-items: center;
   justify-content: space-between;
@@ -741,33 +1148,33 @@ button {
   color: #e2e8f0;
 }
 
-.student-page .success-box {
+.student-dashboard .success-box {
   opacity: 0;
   transform: translateY(8px);
   transition: opacity 0.25s ease, transform 0.25s ease;
 }
 
-.student-page .success-box.show {
+.student-dashboard .success-box.show {
   opacity: 1;
   transform: translateY(0);
 }
 
-.student-page .btn-secondary {
+.student-dashboard .btn-secondary {
   transition: transform 0.2s ease, background-color 0.2s ease;
 }
 
-.student-page .btn-secondary:hover {
+.student-dashboard .btn-secondary:hover {
   transform: translateY(-1px);
 }
 
-.student-page .sub-card {
+.student-dashboard .sub-card {
   border-radius: 1.5rem;
   background: rgba(15, 23, 42, 0.85);
   border: 1px solid rgba(148, 163, 184, 0.16);
   padding: 1.25rem;
 }
 
-.student-page .sub-card-header {
+.student-dashboard .sub-card-header {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
@@ -775,13 +1182,13 @@ button {
   flex-wrap: wrap;
 }
 
-.student-page .sub-student {
+.student-dashboard .sub-student {
   display: flex;
   align-items: center;
   gap: 0.75rem;
 }
 
-.student-page .sub-avatar {
+.student-dashboard .sub-avatar {
   min-width: 2.5rem;
   min-height: 2.5rem;
   display: grid;
@@ -790,61 +1197,70 @@ button {
   background: #0f172a;
 }
 
-.student-page .sub-task-badge {
+.student-dashboard .sub-task-badge {
   background: rgba(148, 163, 184, 0.12);
   color: #cbd5e1;
 }
 
-.student-page .sub-type-badge {
+.student-dashboard .sub-type-badge {
   border-radius: 9999px;
   padding: 0.35rem 0.75rem;
   color: #ffffff;
 }
 
-.student-page .sub-type-badge.bg-amber-600 { background: #f59e0b; }
-.student-page .sub-type-badge.bg-sky-600 { background: #0ea5e9; }
-.student-page .sub-type-badge.bg-emerald-600 { background: #22c55e; }
+.student-dashboard .sub-type-badge.bg-amber-600 {
+  background: #f59e0b;
+}
 
-.student-page .sub-content {
+.student-dashboard .sub-type-badge.bg-sky-600 {
+  background: #0ea5e9;
+}
+
+.student-dashboard .sub-type-badge.bg-emerald-600 {
+  background: #22c55e;
+}
+
+.student-dashboard .sub-content {
   margin-top: 1rem;
 }
 
-.student-page .sub-link,
-.student-page .sub-file-chip {
+.student-dashboard .sub-link,
+.student-dashboard .sub-file-chip {
   color: #f97316;
   word-break: break-all;
 }
 
-.student-page .sub-text-content {
+.student-dashboard .sub-text-content {
   color: #cbd5e1;
   line-height: 1.7;
 }
 
-.student-page .view-modal img {
+.student-dashboard .view-modal img {
   max-width: 100%;
   border-radius: 1rem;
 }
 
-.student-page .confirm-btns {
+.student-dashboard .confirm-btns {
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
   justify-content: center;
 }
 
-.student-page .toast {
+.student-dashboard .toast {
   transition: opacity 0.25s ease, transform 0.25s ease;
 }
 
-.student-page .toast.opacity-100 {
+.student-dashboard .toast.opacity-100 {
   transform: translateY(0);
 }
 
 @media (max-width: 640px) {
-  .student-page .modal,
-  .student-page .confirm-box,
-  .student-page .view-modal,
-  .student-page .edit-modal {
+
+  .student-dashboard .modal,
+  .student-dashboard .confirm-box,
+  .student-dashboard .view-modal,
+  .student-dashboard .edit-modal {
     max-width: 100%;
     border-radius: 1.25rem;
   }
@@ -872,6 +1288,59 @@ button {
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-20px); }
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@media (max-width: 767px) {
+
+  .student-dashboard button,
+  .company-dashboard button,
+  .profile-surface button {
+    min-height: 2.75rem;
+  }
+
+  .student-dashboard input:not([type="file"]):not([type="checkbox"]):not([type="radio"]),
+  .student-dashboard select,
+  .company-dashboard input:not([type="file"]):not([type="checkbox"]):not([type="radio"]),
+  .company-dashboard select,
+  .profile-surface input:not([type="file"]):not([type="checkbox"]):not([type="radio"]),
+  .profile-surface select,
+  .profile-surface textarea {
+    min-height: 2.75rem;
+  }
+
+  .student-dashboard textarea,
+  .company-dashboard textarea {
+    min-height: 6rem;
+  }
+
+  .mobile-dialog-overlay {
+    align-items: flex-start;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding-top: max(0.75rem, env(safe-area-inset-top));
+    padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
+  }
+
+  .mobile-dialog-panel {
+    max-height: calc(100vh - 1.5rem);
+    max-height: calc(100dvh - max(1.5rem, env(safe-area-inset-top) + env(safe-area-inset-bottom) + 0.5rem));
+    overscroll-behavior: contain;
+    overflow-wrap: anywhere;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .student-dashboard,
+  .company-dashboard,
+  .profile-surface {
+    overflow-x: clip;
+  }
 }

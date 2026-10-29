@@ -88,8 +88,8 @@ export default function TermsAndConditions() {
 
           <h2 className="text-xl text-white mt-10 mb-4 font-bold">11. Contact</h2>
           <div className="mt-4 space-y-4 mb-10">
-            <a href="https://skillstreet.carrd.co/" target="_blank" rel="noreferrer" className="block text-orange-300 hover:text-white transition-colors underline">
-              Website: skillstreet.carrd.co
+            <a href="https://skillstreetofficial.in/" target="_blank" rel="noreferrer" className="block text-orange-300 hover:text-white transition-colors underline">
+              Website: skillstreetofficial.in
             </a>
             <a href="https://www.linkedin.com/company/skill.street/" target="_blank" rel="noreferrer" className="block text-orange-300 hover:text-white transition-colors underline">
               LinkedIn: SkillStreet

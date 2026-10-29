@@ -9,5 +9,27 @@ export default defineConfig({
     postcss: {
       plugins: [tailwindcss(), autoprefixer()]
     }
+  },
+  build: {
+    outDir: 'dist',
+    assetsDir: 'assets',
+    emptyOutDir: true,
+    chunkSizeWarningLimit: 1000
+  },
+  server: {
+    port: 8002,
+    host: true,
+    proxy: {
+      '/api': {
+        target: 'http://localhost:8000',
+        changeOrigin: true,
+        secure: false
+      },
+      '/uploads': {
+        target: 'http://localhost:8000',
+        changeOrigin: true,
+        secure: false
+      }
+    }
   }
 });

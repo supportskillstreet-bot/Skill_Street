@@ -14,7 +14,7 @@ export default function Disclaimer() {
       <section className="bg-black text-zinc-300 px-6 py-32 min-h-screen">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-3xl md:text-5xl text-white font-light mb-8">Disclaimer</h1>
-          <p className="mb-6 text-sm text-slate-400">Last Updated: March 2026</p>
+          <p className="mb-6 text-sm text-slate-400">Last Updated: June 2026</p>
           <p className="mb-8 leading-relaxed text-lg">
             The information provided by SkillStreet is for general educational and informational purposes only. All content is published in good faith, however we make no guarantees regarding completeness, reliability, or accuracy.
           </p>
@@ -46,8 +46,8 @@ export default function Disclaimer() {
 
           <h2 className="text-xl text-white mt-10 mb-4 font-bold">6. Contact</h2>
           <div className="mt-4 space-y-4">
-            <a href="https://skillstreet.carrd.co/" target="_blank" rel="noreferrer" className="block text-orange-300 hover:text-white transition-colors underline">
-              Website: skillstreet.carrd.co
+            <a href="https://skillstreetofficial.in/" target="_blank" rel="noreferrer" className="block text-orange-300 hover:text-white transition-colors underline">
+              Website: skillstreetoffical.in
             </a>
             <a href="https://www.linkedin.com/company/skill.street/" target="_blank" rel="noreferrer" className="block text-orange-300 hover:text-white transition-colors underline">
               LinkedIn: SkillStreet
